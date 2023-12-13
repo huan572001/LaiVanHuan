@@ -1,13 +1,18 @@
 import { logo } from "@/assets";
+import { useAuth } from "@/context/AuthProvider";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import { Button } from "antd";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
-
 const Test1 = () => {
   const [data, setData] = useState([
     { money: "$1.80B", describe: "30 Day Volume" },
     { money: "$0.84B", describe: "Managed on testX.fi" },
     { money: "$21.43M", describe: "Total Collateral Automated" },
   ]);
+  const { loginGoogle, user } = useAuth();
+  console.log(user);
   return (
     <>
       <div className="ml-9">
@@ -32,11 +37,14 @@ const Test1 = () => {
             </Button>
           </div>
           <div className="flex justify-between">
-            <Button className=" h-10 bg-sky-300 hover:bg-sky-400 rounded-[32px] px-[62px]">
+            <div
+              className=" h-10 bg-sky-300 hover:bg-sky-400 rounded-[32px] px-[62px] grid ite"
+              onClick={() => loginGoogle()}
+            >
               <div className="text-center text-white text-lg font-bold">
                 Log in
               </div>
-            </Button>
+            </div>
             <Button className="h-10 bg-white rounded-[32px] shadow px-[56px]">
               <div className=" text-center text-blue-900 text-base font-bold ">
                 Launch App

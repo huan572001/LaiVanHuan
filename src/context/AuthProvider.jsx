@@ -1,10 +1,13 @@
-import { keyToken, keyUser } from '@/constant/auth';
-import React, { useContext, useState } from 'react';
+import { keyToken, keyUser } from "@/constant/auth";
+import { loginByGoogle } from "@/services/auth";
+import { useGoogleLogin } from "@react-oauth/google";
+import React, { useContext, useState } from "react";
 
 export const AuthContext = React.createContext({
   user: {},
   login: () => {},
   logout: () => {},
+  loginGoogle: () => {},
 });
 
 export const useAuth = () => {
@@ -19,7 +22,15 @@ const AuthProvider = ({ children }) => {
 
     localStorage.setItem(keyToken, data.token);
   };
-
+  const loginGoogle = useGoogleLogin({
+    onSuccess: async (token) => {
+      try {
+        const res = await loginByGoogle(token.access_token);
+        localStorage.setItem(keyUser, JSON.stringify(res?.data));
+        setUser(res?.data);
+      } catch (error) {}
+    },
+  });
   const logout = () => {
     setUser(null);
     localStorage.removeItem(keyUser);
@@ -31,6 +42,7 @@ const AuthProvider = ({ children }) => {
         user,
         login,
         logout,
+        loginGoogle,
       }}
     >
       {children}

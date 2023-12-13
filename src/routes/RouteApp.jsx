@@ -4,10 +4,18 @@ import LayoutPage from "@/layout";
 import { useEffect } from "react";
 import { Navigate, useNavigate, useRoutes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-import routes from "./routes";
+import routes, { routesAuth } from "./routes";
+import Test1 from "@/pages/test1";
+import routerLinks from "@/utils/router-links";
 
-const getPageRoute = () => {
-  return routes.map((route) => {
+const getPageRoute = (isAuthen) => {
+  let R = [];
+  if (isAuthen) {
+    R = [...routes, ...routesAuth];
+  } else {
+    R = routes;
+  }
+  return R.map((route) => {
     const Comp = route?.component;
     return {
       path: route?.path,
@@ -21,7 +29,7 @@ const RenderRoutes = (isAuthen) => {
     {
       path: "/",
       element: <LayoutPage />,
-      children: getPageRoute(),
+      children: getPageRoute(isAuthen),
     },
   ];
 };
@@ -30,11 +38,11 @@ const RouterApp = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (auth?.user?.data?.role?.id !== 1) {
-  //     navigate("/", { replace: true });
-  //   }d
-  // }, [auth?.user]);
+  useEffect(() => {
+    if (!auth?.user) {
+      navigate("/", { replace: true });
+    }
+  }, [auth?.user]);
   const element = useRoutes(RenderRoutes(auth?.user));
 
   return element;

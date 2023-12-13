@@ -3,8 +3,16 @@ import React, { lazy } from "react";
 import routerLinks from "@/utils/router-links";
 const routes = [
   {
-    label: "dashboard",
+    label: "Dashboard",
     path: routerLinks("Dashboard"),
+    component: React.lazy(() => import("@/pages/test1")),
+    key: "/",
+  },
+];
+export const routesAuth = [
+  {
+    label: "home",
+    path: routerLinks("home"),
     component: React.lazy(() => import("@/pages/test2")),
     key: "/",
   },
