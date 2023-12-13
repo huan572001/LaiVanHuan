@@ -46,7 +46,10 @@ const Test1 = () => {
                 Log in
               </div>
             </div>
-            <Button className="h-10 bg-white rounded-[32px] shadow px-[56px]">
+            <Button
+              className="h-10 bg-white rounded-[32px] shadow px-[56px]"
+              onClick={() => navigate(routerLinks("Home"))}
+            >
               <div className=" text-center text-blue-900 text-base font-bold ">
                 Launch App
               </div>

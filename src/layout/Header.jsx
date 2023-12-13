@@ -9,7 +9,7 @@ import { useState } from "react";
 import { format } from "prettier";
 const menu = ["Products", "Protocols", "Tokens", "Use Cases"];
 const HeaderComponent = () => {
-  const { user } = useAuth();
+  const navigate = useNavigate();
   const [account, setAccount] = useState();
   const getAptosWallet = () => {
     if ("aptos" in window) {
@@ -38,13 +38,17 @@ const HeaderComponent = () => {
   };
   return (
     <Header className="h-36 bg-white flex justify-between items-center header">
-      <img src={logo} className="w-[260px] h-[135px]" />
+      <img
+        src={logo}
+        className="w-[260px] h-[135px] cursor-pointer"
+        onClick={() => navigate("/")}
+      />
       <div className="flex items-center justify-between w-[821px] h-[45px]  bg-red-200 rounded-xl pl-8 pr-[14px]">
         {menu?.map((e, index) => {
           return (
             <div
               key={index}
-              className="w-16 h-[15.75px] text-gray-500 text-sm font-bold  leading-[21px]"
+              className="w-16 h-[15.75px] text-gray-500 hover:text-gray-700 text-sm font-bold  leading-[21px] cursor-pointer"
             >
               {e}
             </div>
