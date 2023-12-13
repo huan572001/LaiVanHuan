@@ -6,7 +6,7 @@ import "./styles/index.less";
 
 import { Provider } from "react-redux";
 import store from "./store";
-// lên lại này
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <React.StrictMode>
