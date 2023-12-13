@@ -1,0 +1,21 @@
+import { Layout } from "antd";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import HeaderComponent from "./Header";
+import "./index.less";
+
+const { Header, Sider, Content } = Layout;
+const LayoutPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  // const [collapsed, setCollapsed] = useState(false);
+
+  return (
+    <Layout>
+      <HeaderComponent />
+      <Content className="gradient">
+        <Outlet />
+      </Content>
+    </Layout>
+  );
+};
+export default LayoutPage;
