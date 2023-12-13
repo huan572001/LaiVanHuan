@@ -14,3 +14,7 @@ export async function loginByGoogle(access_token) {
     },
   });
 }
+export async function checkIp() {
+  const url = `https://ipinfo.io/json?token=28bab61ea8c636`;
+  return axios.get(url);
+}

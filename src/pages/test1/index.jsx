@@ -1,18 +1,18 @@
 import { logo } from "@/assets";
 import { useAuth } from "@/context/AuthProvider";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { checkIp } from "@/services/auth";
+import routerLinks from "@/utils/router-links";
 import { Button } from "antd";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 const Test1 = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([
     { money: "$1.80B", describe: "30 Day Volume" },
     { money: "$0.84B", describe: "Managed on testX.fi" },
     { money: "$21.43M", describe: "Total Collateral Automated" },
   ]);
-  const { loginGoogle, user } = useAuth();
-  console.log(user);
+  const { loginGoogle } = useAuth();
   return (
     <>
       <div className="ml-9">
@@ -38,7 +38,7 @@ const Test1 = () => {
           </div>
           <div className="flex justify-between">
             <div
-              className=" h-10 bg-sky-300 hover:bg-sky-400 rounded-[32px] px-[62px] grid ite"
+              className=" h-10 bg-sky-300 hover:bg-sky-400 rounded-[32px] px-[62px] grid items-center"
               onClick={() => loginGoogle()}
             >
               <div className="text-center text-white text-lg font-bold">

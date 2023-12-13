@@ -12,7 +12,7 @@ const routes = [
 export const routesAuth = [
   {
     label: "home",
-    path: routerLinks("home"),
+    path: routerLinks("Home"),
     component: React.lazy(() => import("@/pages/test2")),
     key: "/",
   },

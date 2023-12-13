@@ -1,7 +1,9 @@
 import { keyToken, keyUser } from "@/constant/auth";
 import { loginByGoogle } from "@/services/auth";
+import routerLinks from "@/utils/router-links";
 import { useGoogleLogin } from "@react-oauth/google";
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 export const AuthContext = React.createContext({
   user: {},
@@ -15,6 +17,7 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem(keyUser)));
   const login = (data) => {
     localStorage.setItem(keyUser, JSON.stringify(data));
@@ -27,7 +30,8 @@ const AuthProvider = ({ children }) => {
       try {
         const res = await loginByGoogle(token.access_token);
         localStorage.setItem(keyUser, JSON.stringify(res?.data));
-        setUser(res?.data);
+        setUser((e) => (e = res?.data));
+        navigate(routerLinks("Home"));
       } catch (error) {}
     },
   });
