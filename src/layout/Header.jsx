@@ -54,24 +54,18 @@ const HeaderComponent = () => {
           className="bg-white hover:bg-slate-100 w-[213px] rounded-[32px] shadow !px-0 py-[2px] cursor-pointer  "
           onClick={() => petra()}
         >
-          {user ? (
-            user?.name
+          {account ? (
+            <div className="px-[14px] w-full flex justify-start items-center gap-2 text-center text-blue-950 text-base font-bold">
+              <img src={petraIcon} />
+              <div>{formatAddress(account?.address)}</div>
+            </div>
           ) : (
-            <>
-              {account ? (
-                <div className="px-[14px] w-full flex justify-start items-center gap-2 text-center text-blue-950 text-base font-bold">
-                  <img src={petraIcon} />
-                  <div>{formatAddress(account?.address)}</div>
-                </div>
-              ) : (
-                <div className="flex justify-center items-center text-center text-blue-950 text-base font-bold gap-1">
-                  <div>Connect Wallet</div>
-                  <div className=" text-center text-blue-950 text-base font-normal ">
-                    →
-                  </div>
-                </div>
-              )}
-            </>
+            <div className="flex justify-center items-center text-center text-blue-950 text-base font-bold gap-1">
+              <div>Connect Wallet</div>
+              <div className=" text-center text-blue-950 text-base font-normal ">
+                →
+              </div>
+            </div>
           )}
         </div>
       </div>
