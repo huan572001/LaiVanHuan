@@ -10,12 +10,7 @@ import { format } from "prettier";
 const menu = ["Products", "Protocols", "Tokens", "Use Cases"];
 const HeaderComponent = () => {
   const { user } = useAuth();
-  const [account, setAccount] = useState({
-    address:
-      "0xab8cc8b5e6b70ba3332d4284316bcae4e671390dfd57608277827f1da5919db0",
-    publicKey:
-      "0xf01dffb5aea5dce48909cc1210025bffa22eacd838806bb79dfcf90996a7c3d4",
-  });
+  const [account, setAccount] = useState();
   const getAptosWallet = () => {
     if ("aptos" in window) {
       return window.aptos;
@@ -63,7 +58,7 @@ const HeaderComponent = () => {
             user?.name
           ) : (
             <>
-              {!account ? (
+              {account ? (
                 <div className="px-[14px] w-full flex justify-start items-center gap-2 text-center text-blue-950 text-base font-bold">
                   <img src={petraIcon} />
                   <div>{formatAddress(account?.address)}</div>
