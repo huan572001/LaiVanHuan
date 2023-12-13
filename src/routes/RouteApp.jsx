@@ -20,7 +20,7 @@ const RenderRoutes = (isAuthen) => {
   return [
     {
       path: "/",
-      element: !!isAuthen ? <LayoutPage /> : <Navigate to="/" />,
+      element: <LayoutPage />,
       children: getPageRoute(),
     },
   ];
@@ -30,11 +30,11 @@ const RouterApp = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (auth?.user?.data?.role?.id!==1) {
-      navigate("/", { replace: true });
-    }
-  }, [auth?.user]);
+  // useEffect(() => {
+  //   if (auth?.user?.data?.role?.id !== 1) {
+  //     navigate("/", { replace: true });
+  //   }d
+  // }, [auth?.user]);
   const element = useRoutes(RenderRoutes(auth?.user));
 
   return element;
