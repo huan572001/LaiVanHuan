@@ -3,11 +3,19 @@ import { Header } from "antd/lib/layout/layout";
 import { useAuth } from "@/context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import routerLinks from "@/utils/router-links";
-import { logo } from "@/assets";
+import { logo, petraIcon } from "@/assets";
 import "./index.less";
+import { useState } from "react";
+import { format } from "prettier";
 const menu = ["Products", "Protocols", "Tokens", "Use Cases"];
 const HeaderComponent = () => {
   const { user } = useAuth();
+  const [account, setAccount] = useState({
+    address:
+      "0xab8cc8b5e6b70ba3332d4284316bcae4e671390dfd57608277827f1da5919db0",
+    publicKey:
+      "0xf01dffb5aea5dce48909cc1210025bffa22eacd838806bb79dfcf90996a7c3d4",
+  });
   const getAptosWallet = () => {
     if ("aptos" in window) {
       return window.aptos;
@@ -17,17 +25,21 @@ const HeaderComponent = () => {
   };
   const petra = async () => {
     const wallet = getAptosWallet();
-    console.log(wallet, "dá");
     try {
       const response = await wallet.connect();
       console.log(response); // { address: string, address: string }
 
       const account = await wallet.account();
-      console.log(account); // { address: string, address: string }
+      setAccount(account);
     } catch (error) {
       console.log(error);
       // { code: 4001, message: "User rejected the request."}
     }
+  };
+  const formatAddress = (address) => {
+    let shortCode =
+      address.substring(0, 5) + "....." + address.substring(address.length - 5);
+    return shortCode;
   };
   return (
     <Header className="h-36 bg-white flex justify-between items-center header">
@@ -43,21 +55,30 @@ const HeaderComponent = () => {
             </div>
           );
         })}
-        <Button
-          className="bg-white rounded-[32px] shadow !px-9"
+        <div
+          className="bg-white hover:bg-slate-100 w-[213px] rounded-[32px] shadow !px-0 py-[2px] cursor-pointer  "
           onClick={() => petra()}
         >
           {user ? (
             user?.name
           ) : (
-            <div className="flex justify-center items-center text-center text-blue-950 text-base font-bold gap-1">
-              <div>Connect Wallet</div>
-              <div className=" text-center text-blue-950 text-base font-normal ">
-                →
-              </div>
-            </div>
+            <>
+              {!account ? (
+                <div className="px-[14px] w-full flex justify-start items-center gap-2 text-center text-blue-950 text-base font-bold">
+                  <img src={petraIcon} />
+                  <div>{formatAddress(account?.address)}</div>
+                </div>
+              ) : (
+                <div className="flex justify-center items-center text-center text-blue-950 text-base font-bold gap-1">
+                  <div>Connect Wallet</div>
+                  <div className=" text-center text-blue-950 text-base font-normal ">
+                    →
+                  </div>
+                </div>
+              )}
+            </>
           )}
-        </Button>
+        </div>
       </div>
     </Header>
   );
