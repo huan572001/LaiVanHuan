@@ -29,26 +29,29 @@ const getPageRoute = (isAuthen) => {
 
 const RenderRoutes = (isAuthen, ip) => {
   let routes = [];
-  if (ip?.country === "JP") {
-    routes = [
-      {
-        path: "/",
-        element: <NotFound />,
-      },
-    ];
-  } else {
-    routes = [
-      {
-        path: "*",
-        element: <NotFound />,
-      },
-      {
-        path: "/",
-        element: <LayoutPage />,
-        children: getPageRoute(isAuthen),
-      },
-    ];
+  if (ip) {
+    if (ip?.country === "JP") {
+      routes = [
+        {
+          path: "/",
+          element: <NotFound />,
+        },
+      ];
+    } else {
+      routes = [
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+        {
+          path: "/",
+          element: <LayoutPage />,
+          children: getPageRoute(isAuthen),
+        },
+      ];
+    }
   }
+
   return routes;
 };
 

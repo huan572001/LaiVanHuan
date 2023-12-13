@@ -8,6 +8,27 @@ import "./index.less";
 const menu = ["Products", "Protocols", "Tokens", "Use Cases"];
 const HeaderComponent = () => {
   const { user } = useAuth();
+  const getAptosWallet = () => {
+    if ("aptos" in window) {
+      return window.aptos;
+    } else {
+      window.open("https://petra.app/", `_blank`);
+    }
+  };
+  const petra = async () => {
+    const wallet = getAptosWallet();
+    console.log(wallet, "dá");
+    try {
+      const response = await wallet.connect();
+      console.log(response); // { address: string, address: string }
+
+      const account = await wallet.account();
+      console.log(account); // { address: string, address: string }
+    } catch (error) {
+      console.log(error);
+      // { code: 4001, message: "User rejected the request."}
+    }
+  };
   return (
     <Header className="h-36 bg-white flex justify-between items-center header">
       <img src={logo} className="w-[260px] h-[135px]" />
@@ -22,7 +43,10 @@ const HeaderComponent = () => {
             </div>
           );
         })}
-        <Button className="bg-white rounded-[32px] shadow !px-9">
+        <Button
+          className="bg-white rounded-[32px] shadow !px-9"
+          onClick={() => petra()}
+        >
           {user ? (
             user?.name
           ) : (

@@ -13,6 +13,7 @@ const Test1 = () => {
     { money: "$21.43M", describe: "Total Collateral Automated" },
   ]);
   const { loginGoogle } = useAuth();
+
   return (
     <>
       <div className="ml-9">
@@ -61,7 +62,7 @@ const Test1 = () => {
                 {e?.money}
               </div>
               <div className=" text-center text-gray-500 text-base font-normal leading-normal">
-                30 Day Volume
+                {e?.describe}
               </div>
             </div>
           );
