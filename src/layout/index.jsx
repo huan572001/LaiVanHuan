@@ -12,7 +12,7 @@ const LayoutPage = () => {
   return (
     <Layout>
       <HeaderComponent />
-      <Content className="gradient">
+      <Content className="gradient !min-h-[200vh] md:!min-h-[120vh]">
         <Outlet />
       </Content>
     </Layout>
