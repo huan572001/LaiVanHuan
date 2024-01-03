@@ -5,6 +5,8 @@ import routerLinks from "@/utils/router-links";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import ReactGA from "react-ga";
+
 const Test1 = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([
@@ -13,7 +15,16 @@ const Test1 = () => {
     { money: "$21.43M", describe: "Total Collateral Automated" },
   ]);
   const { loginGoogle } = useAuth();
-
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
+  const check = () => {
+    ReactGA.event({
+      category: "huan",
+      action: "hihi",
+    });
+    navigate(routerLinks("Home"));
+  };
   return (
     <>
       <div className=" mx-3 sm:mx-9 ">
@@ -51,7 +62,7 @@ const Test1 = () => {
               </Button>
               <Button
                 className="h-10 w-[150px] bg-white rounded-[32px] shadow min-[480px]:w-[202px]"
-                onClick={() => navigate(routerLinks("Home"))}
+                onClick={() => check()}
               >
                 <div className=" text-center text-blue-900 text-base font-bold ">
                   Launch App
