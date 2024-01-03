@@ -1,4 +1,5 @@
 import { logo } from "@/assets";
+import withPageTracking from "@/hook/withPageTracking";
 import { Button } from "antd";
 import { useState } from "react";
 
@@ -35,4 +36,4 @@ const Test2 = () => {
     </>
   );
 };
-export default Test2;
+export default withPageTracking(Test2);

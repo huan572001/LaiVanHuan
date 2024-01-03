@@ -6,6 +6,7 @@ import { Button } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import ReactGA from "react-ga";
+import withPageTracking from "@/hook/withPageTracking";
 
 const Test1 = () => {
   const navigate = useNavigate();
@@ -89,4 +90,4 @@ const Test1 = () => {
     </>
   );
 };
-export default Test1;
+export default withPageTracking(Test1);
