@@ -16,14 +16,10 @@ const Test1 = () => {
     { money: "$21.43M", describe: "Total Collateral Automated" },
   ]);
   const { loginGoogle } = useAuth();
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
-  }, []);
+  // useEffect(() => {
+  //   ReactGA.pageview(window.location.pathname);
+  // }, []);
   const check = () => {
-    ReactGA.event({
-      category: "huan",
-      action: "hihi",
-    });
     navigate(routerLinks("Home"));
   };
   return (
