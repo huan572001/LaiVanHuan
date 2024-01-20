@@ -8,6 +8,7 @@ import "./index.less";
 import { useState } from "react";
 import { format } from "prettier";
 import { MenuFoldOutlined } from "@ant-design/icons";
+import ReactGA from "react-ga";
 const menu = ["Products", "Protocols", "Tokens", "Use Cases"];
 const HeaderComponent = () => {
   const navigate = useNavigate();
@@ -27,6 +28,12 @@ const HeaderComponent = () => {
       console.log(response); // { address: string, address: string }
 
       const account = await wallet.account();
+      ReactGA.event({
+        category: "connect",
+        action: "connect",
+        label: "connect",
+        value: "connect",
+      });
       setAccount(account);
     } catch (error) {
       console.log(error);
