@@ -22,6 +22,12 @@ const HeaderComponent = () => {
     }
   };
   const petra = async () => {
+    ReactGA.event({
+      category: "connect",
+      action: "connect",
+      label: "connect",
+      value: "connect",
+    });
     const wallet = getAptosWallet();
     try {
       const response = await wallet.connect();
