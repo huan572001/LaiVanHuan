@@ -21,8 +21,8 @@ const Test1 = () => {
   // }, []);
   const check = () => {
     ReactGA.event({
-      category: "User",
-      action: "Created an Account",
+      category: "connect",
+      action: "connect",
       nonInteraction: true,
     });
     // navigate(routerLinks("Home"));
