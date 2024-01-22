@@ -8,7 +8,7 @@ import "./index.less";
 import { useState } from "react";
 import { format } from "prettier";
 import { MenuFoldOutlined } from "@ant-design/icons";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 const menu = ["Products", "Protocols", "Tokens", "Use Cases"];
 const HeaderComponent = () => {
   const navigate = useNavigate();

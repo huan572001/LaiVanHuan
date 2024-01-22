@@ -5,7 +5,7 @@ import routerLinks from "@/utils/router-links";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import withPageTracking from "@/hook/withPageTracking";
 
 const Test1 = () => {
@@ -20,11 +20,15 @@ const Test1 = () => {
   //   ReactGA.pageview(window.location.pathname);
   // }, []);
   const check = () => {
-    ReactGA.event({
-      category: "connect",
-      action: "connect",
-      nonInteraction: true,
-    });
+    ReactGA.set();
+    ReactGA.event(
+      {
+        category: "connect",
+        action: "connect",
+        nonInteraction: true,
+      },
+      "cone"
+    );
     // navigate(routerLinks("Home"));
   };
   return (
