@@ -20,7 +20,11 @@ const Test1 = () => {
   //   ReactGA.pageview(window.location.pathname);
   // }, []);
   const check = () => {
-    navigate(routerLinks("Home"));
+    ReactGA.event({
+      category: "User",
+      action: "Created an Account",
+    });
+    // navigate(routerLinks("Home"));
   };
   return (
     <>
@@ -44,13 +48,13 @@ const Test1 = () => {
         <div className="grid justify-center sm:justify-start">
           <div className="max-w-[423px] grid gap-[21px] mt-4 ">
             <div className=" h-[39.75px] bg-slate-100 rounded-[32px] flex justify-end items-center px-[9px]">
-              <Button className="px-6 bg-rose-300 hover:bg-rose-400 rounded-[32px] shadow text-blue-900 text-base leading-3 line font-normal text-center align-top">
+              <Button className="testGa px-6 bg-rose-300 hover:bg-rose-400 rounded-[32px] shadow text-blue-900 text-base leading-3 line font-normal text-center align-top">
                 Sign up
               </Button>
             </div>
             <div className="flex justify-between">
               <Button
-                className=" h-10 bg-sky-300 hover:bg-sky-400 rounded-[32px] w-[150px] min-[480px]:w-[202px] grid items-center"
+                className="testGa h-10 bg-sky-300 hover:bg-sky-400 rounded-[32px] w-[150px] min-[480px]:w-[202px] grid items-center"
                 onClick={() => loginGoogle()}
               >
                 <div className="text-center text-white text-lg font-bold">
