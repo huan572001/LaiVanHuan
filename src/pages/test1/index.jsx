@@ -49,7 +49,10 @@ const Test1 = () => {
         <div className="grid justify-center sm:justify-start">
           <div className="max-w-[423px] grid gap-[21px] mt-4 ">
             <div className=" h-[39.75px] bg-slate-100 rounded-[32px] flex justify-end items-center px-[9px]">
-              <Button className="testGa px-6 bg-rose-300 hover:bg-rose-400 rounded-[32px] shadow text-blue-900 text-base leading-3 line font-normal text-center align-top">
+              <Button
+                id="test"
+                className="testGa px-6 bg-rose-300 hover:bg-rose-400 rounded-[32px] shadow text-blue-900 text-base leading-3 line font-normal text-center align-top"
+              >
                 Sign up
               </Button>
             </div>
