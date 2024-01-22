@@ -35,10 +35,9 @@ const HeaderComponent = () => {
 
       const account = await wallet.account();
       ReactGA.event({
-        category: "connect",
-        action: "connect",
-        label: "connect",
-        value: "connect",
+        category: "connect wallet",
+        action: "connect wallet",
+        nonInteraction: true,
       });
       setAccount(account);
     } catch (error) {
