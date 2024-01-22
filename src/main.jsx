@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { TRACKING_ID } from "./constant/auth";
 ReactGA.initialize(TRACKING_ID);
+ReactGA.set({ dimension14: "Sports" });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <React.StrictMode>
