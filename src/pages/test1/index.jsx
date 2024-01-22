@@ -23,6 +23,7 @@ const Test1 = () => {
     ReactGA.event({
       category: "User",
       action: "Created an Account",
+      nonInteraction: true,
     });
     // navigate(routerLinks("Home"));
   };
