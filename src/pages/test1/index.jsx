@@ -20,15 +20,11 @@ const Test1 = () => {
   //   ReactGA.pageview(window.location.pathname);
   // }, []);
   const check = () => {
-    ReactGA.set();
-    ReactGA.event(
-      {
-        category: "connect",
-        action: "connect",
-        nonInteraction: true,
-      },
-      "cone"
-    );
+    ReactGA.event({
+      category: "connect",
+      action: "connect",
+      nonInteraction: true,
+    });
     // navigate(routerLinks("Home"));
   };
   return (
