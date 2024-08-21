@@ -55,6 +55,7 @@ const Test1 = () => {
               <Button
                 id="test"
                 className="testGa px-6 bg-rose-300 hover:bg-rose-400 rounded-[32px] shadow text-blue-900 text-base leading-3 line font-normal text-center align-top"
+                onClick={() => navigate(routerLinks("Home"))}
               >
                 Sign up
               </Button>
