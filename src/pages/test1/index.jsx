@@ -21,12 +21,14 @@ const Test1 = () => {
   // }, []);
   const check = () => {
     console.log("hihi");
-    ReactGA.event({
-      category: "connect 123",
-      action: "connect 123",
-      nonInteraction: true,
+    ReactGA.event("purchase", {
+      transaction_id: "15156112",
+      category: "buy", // Bắt buộc: Danh mục của sự kiện
+      action: "buy",
+      value: 123,
+      currency: "USD", // Đơn vị tiền tệ
     });
-    // navigate(routerLinks("Home"));
+    navigate(routerLinks("Home"));
   };
   return (
     <>
